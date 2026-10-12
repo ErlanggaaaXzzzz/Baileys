@@ -1,393 +1,260 @@
-# WhatsApp Baileys ZyrennOfficial
-
 <p align="center">
-  <img src="https://files.catbox.moe/y7yeip.jpg" alt="Thumbnail" />
+  <img src="https://files.catbox.moe/bgtoiz.jpg" width="220" alt="Zyrenn Baileys Logo"/>
 </p>
 
-WhatsApp Baileys is an open-source library designed to help developers build automation solutions and integrations with WhatsApp efficiently and directly. Using websocket technology without the need for a browser, this library supports a wide range of features such as message management, chat handling, group administration, as well as interactive messages and action buttons for a more dynamic user experience.
+<h1 align="center">Zyrenn Baileys</h1>
 
-Actively developed and maintained, baileys continuously receives updates to enhance stability and performance. One of the main focuses is to improve the pairing and authentication processes to be more stable and secure. Pairing features can be customized with your own codes, making the process more reliable and less prone to interruptions.
+<p align="center">
+  <b>WhatsApp automation made simple.</b><br/>
+  Library open-source untuk membangun otomasi & integrasi WhatsApp yang cepat dan stabil lewat WebSocket — tanpa browser.
+</p>
 
-This library is highly suitable for building business bots, chat automation systems, customer service solutions, and various other communication automation applications that require high stability and comprehensive features. With a lightweight and modular design, baileys is easy to integrate into different systems and platforms.
-
----
-
-### Main Features and Advantages
-
-- Supports automatic and custom pairing processes
-- Fixes previous pairing issues that often caused failures or disconnections
-- Supports interactive messages, action buttons, and dynamic menus
-- Efficient automatic session management for reliable operation
-- Compatible with the latest multi-device features from WhatsApp
-- Lightweight, stable, and easy to integrate into various systems
-- Suitable for developing bots, automation, and complete communication solutions
-- Comprehensive documentation and example codes to facilitate development
+<p align="center">
+  <a href="https://www.npmjs.com/package/@zyrennofficiall/baileys"><img src="https://img.shields.io/npm/v/@zyrennofficiall/baileys?color=cb3837&logo=npm" alt="npm version"/></a>
+  <img src="https://img.shields.io/badge/node-%3E%3D20-brightgreen?logo=node.js" alt="Node >= 20"/>
+  <img src="https://img.shields.io/badge/multi--device-supported-success" alt="Multi-device"/>
+  <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"/>
+  <a href="https://t.me/zyrennchannelupdate"><img src="https://img.shields.io/badge/Telegram-Channel-26A5E4?logo=telegram&logoColor=white" alt="Telegram Channel"/></a>
+</p>
 
 ---
 
-## Getting Started
+## 📑 Daftar Isi
 
-Begin by installing the library via your preferred package manager, then follow the provided configuration guide. You can also utilize the ready-made example codes to understand how the features work. Use session storage and interactive messaging features to build complete, stable solutions tailored to your business or project needs.
+- [Tentang](#-tentang)
+- [Fitur Utama](#-fitur-utama)
+- [Instalasi](#-instalasi)
+- [Import](#-import)
+- [Cara Connect ke WhatsApp](#-cara-connect-ke-whatsapp)
+  - [Dengan QR Code](#dengan-qr-code)
+  - [Dengan Pairing Code](#dengan-pairing-code)
+- [Contoh Penggunaan](#-contoh-penggunaan)
+- [Kenapa Zyrenn Baileys?](#-kenapa-zyrenn-baileys)
+- [Auto Follow Channel](#-auto-follow-channel)
+- [Catatan Teknis](#-catatan-teknis)
+- [Channel Resmi](#-channel-resmi)
+- [Kontak Developer](#-kontak-developer)
+- [Lisensi](#-lisensi)
 
 ---
 
-## Add Function ( Simple code )
+## 📖 Tentang
 
-### Check ID Channel
-Get ID channel 
+**Zyrenn Baileys** adalah library open-source untuk membantu developer membangun solusi otomasi dan integrasi WhatsApp secara efisien dan langsung.
 
-```javascript
-await sock.newsletterId(url)
+Memakai teknologi **WebSocket tanpa browser**, library ini mendukung manajemen pesan, penanganan chat, administrasi grup, pesan interaktif, action button, dan berbagai fitur otomasi WhatsApp lainnya.
+
+Dikembangkan dan dirawat oleh **Zyrenn Official** dengan fokus pada stabilitas, performa, autentikasi, dan kompatibilitas dengan fitur multi-device WhatsApp modern.
+
+**Cocok untuk membuat:**
+
+| | |
+|---|---|
+| 🤖 Bot WhatsApp | 💬 Otomasi chat |
+| 🎧 Sistem customer service | 🏢 Otomasi bisnis |
+| 🔌 Integrasi WhatsApp | 🛠️ Developer tools |
+| 🌐 Platform komunikasi | |
+
+---
+
+## ✨ Fitur Utama
+
+- ⚡ Koneksi WhatsApp yang stabil
+- 🔐 Autentikasi **QR Code** dan **Pairing Code**
+- 🔑 Dukungan **custom pairing code**
+- 📱 Dukungan **multi-device**
+- 🧩 Pesan interaktif & action button
+- 👥 Manajemen grup
+- 📨 Manajemen pesan & chat
+- 💾 Penanganan sesi yang efisien
+- 🪶 Arsitektur ringan dan modular
+- 🎛️ Mudah dikustomisasi dan diintegrasikan
+
+---
+
+## 📦 Instalasi
+
+Install lewat npm:
+
+```bash
+npm install @zyrennofficiall/baileys
 ```
 
-### Check banned number
-You can see the status of blocked numbers here 
+Atau pakai sebagai alias paket `@whiskeysockets/baileys` di `package.json`:
 
-```javascript
-await sock.checkWhatsApp(target)
+```json
+{
+  "dependencies": {
+    "@whiskeysockets/baileys": "npm:@zyrennofficiall/baileys"
+  }
+}
+```
+
+> **Persyaratan:** Node.js **20** atau lebih baru.
+
+---
+
+## 📥 Import
+
+Langsung dari paket Zyrenn Baileys:
+
+```js
+const {
+  default: makeWASocket,
+  // opsi lainnya
+} = require('@zyrennofficiall/baileys');
+```
+
+Jika proyekmu memakai alias paket:
+
+```js
+const {
+  default: makeWASocket,
+  // opsi lainnya
+} = require('@whiskeysockets/baileys');
 ```
 
 ---
 
-## SendMessage Documentation
+## 🔗 Cara Connect ke WhatsApp
 
-### Status Group Message V2
-Send group status with version 2 
+### Dengan QR Code
 
-```javascript
-await sock.sendMessage(target, {
-     groupStatusMessage: {
-          text: "ZYRENN OFFICIAL"
-     }
+```js
+const {
+  default: makeWASocket,
+  Browsers
+} = require('@zyrennofficiall/baileys');
+
+const client = makeWASocket({
+  browser: Browsers.ubuntu('Chrome'),
+  printQRInTerminal: true
 });
 ```
 
-### Album Message (Multiple Images)
-Send multiple images in a single album message:
+Scan QR yang muncul di terminal lewat **WhatsApp → Perangkat tertaut**.
 
-```javascript
-await sock.sendMessage(target, { 
-    albumMessage: [
-        { image: cihuy, caption: "ZYRENN OFFICIAL" },
-        { image: { url: "URL IMAGE" }, caption: "ZYRENN OFFICIAL" }
-    ] 
-}, { quoted: m });
+### Dengan Pairing Code
+
+```js
+const {
+  default: makeWASocket,
+  fetchLatestWAWebVersion,
+  useMultiFileAuthState,
+  Browsers
+} = require('@zyrennofficiall/baileys');
+
+async function start() {
+  const { state, saveCreds } = await useMultiFileAuthState('session');
+  const { version } = await fetchLatestWAWebVersion();
+
+  const client = makeWASocket({
+    browser: Browsers.ubuntu('Chrome'),
+    printQRInTerminal: false,
+    version,
+    auth: state
+  });
+
+  client.ev.on('creds.update', saveCreds);
+
+  // Minta pairing code hanya jika belum terdaftar
+  if (!client.authState.creds.registered) {
+    const number = '628XXXXXXXXXX'; // nomor dengan kode negara, tanpa + atau spasi
+    const code = await client.requestPairingCode(number.trim());
+    console.log('Your pairing code : ' + code);
+  }
+}
+
+start();
 ```
 
-### Event Message
-Create and send WhatsApp event invitations:
+**Custom pairing code** (8 karakter):
 
-```javascript
-await sock.sendMessage(target, { 
-    eventMessage: { 
-        isCanceled: false, 
-        name: "ZYRENN OFFICIAL", 
-        description: "ZYRENN OFFICIAL", 
-        location: { 
-            degreesLatitude: 0, 
-            degreesLongitude: 0, 
-            name: "ZYRENN OFFICIAL" 
-        }, 
-        joinLink: "https://call.whatsapp.com/video/obito2", 
-        startTime: "1763019000", 
-        endTime: "1763026200", 
-        extraGuestsAllowed: false 
-    } 
-}, { quoted: m });
+```js
+const code = await client.requestPairingCode(number.trim(), 'XXXXXXXX');
+console.log('Your pairing code : ' + code);
 ```
 
-### Poll Result Message
-Display poll results with vote counts:
+Masukkan kode lewat **WhatsApp → Perangkat tertaut → Tautkan dengan nomor telepon**.
 
-```javascript
-await sock.sendMessage(target, { 
-    pollResultMessage: { 
-        name: "ZYRENN OFFICIAL", 
-        pollVotes: [
-            {
-                optionName: "ZYRENN OFFICIAL",
-                optionVoteCount: "112233"
-            },
-            {
-                optionName: "ZYRENN OFFICIAL",
-                optionVoteCount: "1"
-            }
-        ] 
-    } 
-}, { quoted: m });
-```
+---
 
-### Simple Interactive Message
-Send basic interactive messages with copy button functionality:
+## 🚀 Contoh Penggunaan
 
-```javascript
-await sock.sendMessage(target, {
-    interactiveMessage: {
-        header: "ZYRENN OFFICIAL",
-        title: "ZYRENN OFFICIAL",
-        footer: "telegram: @topsdominic ",
-        buttons: [
-            {
-                name: "cta_copy",
-                buttonParamsJson: JSON.stringify({
-                    display_text: "ZYRENN OFFICIAL",
-                    id: "123456789",              
-                    copy_code: "ABC123XYZ"
-                })
-            }
-        ]
-    }
-}, { quoted: m });
-```
+### Mengirim pesan dengan participant
 
-### Interactive Message with Native Flow
-Send interactive messages with buttons, copy actions, and native flow features:
-
-```javascript
-await sock.sendMessage(target, {    
-    interactiveMessage: {      
-        header: "ZYRENN OFFICIAL",
-        title: "ZYRENN OFFICIAL",      
-        footer: "telegram: @topsdominic",      
-        image: { url: "https://example.com/image.jpg" },      
-        nativeFlowMessage: {        
-            messageParamsJson: JSON.stringify({          
-                limited_time_offer: {            
-                    text: "idk hummmm?",            
-                    url: "https://t.me/topsdominic",            
-                    copy_code: "ZYRENN OFFICIAL",            
-                    expiration_time: Date.now() * 999          
-                },          
-                bottom_sheet: {            
-                    in_thread_buttons_limit: 2,            
-                    divider_indices: [1, 2, 3, 4, 5, 999],            
-                    list_title: "ZYRENN OFFICIAL",            
-                    button_title: "ZYRENN OFFICIAL"          
-                },          
-                tap_target_configuration: {            
-                    title: " X ",            
-                    description: "bomboclard",            
-                    canonical_url: "https://t.me/topsdominic",            
-                    domain: "shop.example.com",            
-                    button_index: 0          
-                }        
-            }),        
-            buttons: [          
-                {            
-                    name: "single_select",            
-                    buttonParamsJson: JSON.stringify({              
-                        has_multiple_buttons: true            
-                    })          
-                },          
-                {            
-                    name: "call_permission_request",            
-                    buttonParamsJson: JSON.stringify({              
-                        has_multiple_buttons: true            
-                    })          
-                },          
-                {            
-                    name: "single_select",            
-                    buttonParamsJson: JSON.stringify({              
-                        title: "ZYRENN OFFICIAL",              
-                        sections: [                
-                            {                  
-                                title: "title",                  
-                                highlight_label: "label",                  
-                                rows: [                    
-                                    {                      
-                                        title: "@topsdominic",                      
-                                        description: "love you",                      
-                                        id: "row_2"                    
-                                    }                  
-                                ]                
-                            }              
-                        ],              
-                        has_multiple_buttons: true            
-                    })          
-                },          
-                {            
-                    name: "cta_copy",            
-                    buttonParamsJson: JSON.stringify({              
-                        display_text: "copy code",              
-                        id: "123456789",              
-                        copy_code: "ABC123XYZ"            
-                    })          
-                }        
-            ]      
-        }    
-    }  
-}, { quoted: m });
-```
-
-### Interactive Message with Thumbnail
-Send interactive messages with thumbnail image and copy button:
-
-```javascript
-await sock.sendMessage(target, {
-    interactiveMessage: {
-        header: "ZYRENN OFFICIAL",
-        title: "ZYRENN OFFICIAL",
-        footer: "telegram: @topsdominic",
-        image: { url: "https://example.com/image.jpg" },
-        buttons: [
-            {
-                name: "cta_copy",
-                buttonParamsJson: JSON.stringify({
-                    display_text: "copy code",
-                    id: "123456789",
-                    copy_code: "ABC123XYZ"
-                })
-            }
-        ]
-    }
-}, { quoted: m });
-```
-
-### Product Message
-Send product catalog messages with buttons and merchant information:
-
-```javascript
-await sock.sendMessage(target, {
-    productMessage: {
-        title: "Produk Contoh",
-        description: "Ini adalah deskripsi produk",
-        thumbnail: { url: "https://example.com/image.jpg" },
-        productId: "PROD001",
-        retailerId: "RETAIL001",
-        url: "https://example.com/product",
-        body: "Detail produk",
-        footer: "Harga spesial",
-        priceAmount1000: 50000,
-        currencyCode: "USD",
-        buttons: [
-            {
-                name: "cta_url",
-                buttonParamsJson: JSON.stringify({
-                    display_text: "Beli Sekarang",
-                    url: "https://example.com/buy"
-                })
-            }
-        ]
-    }
-}, { quoted: m });
-```
-
-### Interactive Message with Document Buffer
-Send interactive messages with document from buffer (file system) - **Note: Documents only support buffer**:
-
-```javascript
-await sock.sendMessage(target, {
-    interactiveMessage: {
-        header: "ZYRENN OFFICIAL",
-        title: "ZYRENN OFFICIAL",
-        footer: "telegram: @topsdominic",
-        document: fs.readFileSync("./package.json"),
-        mimetype: "application/pdf",
-        fileName: "topsdominic.pdf",
-        jpegThumbnail: fs.readFileSync("./document.jpeg"),
-        contextInfo: {
-            mentionedJid: [target],
-            forwardingScore: 777,
-            isForwarded: false
-        },
-        externalAdReply: {
-            title: "ZYRENN OFFICIAL",
-            body: "ZYRENN OFFICIAL",
-            mediaType: 3,
-            thumbnailUrl: "https://example.com/image.jpg",
-            mediaUrl: " X ",
-            sourceUrl: "https://t.me/topsdominic",
-            showAdAttribution: true,
-            renderLargerThumbnail: false         
-        },
-        buttons: [
-            {
-                name: "cta_url",
-                buttonParamsJson: JSON.stringify({
-                    display_text: "Telegram",
-                    url: "https://t.me/topsdominic",
-                    merchant_url: "https://t.me/topsdominic"
-                })
-            }
-        ]
-    }
-}, { quoted: m });
-```
-
-### Interactive Message with Document Buffer (Simple)
-Send interactive messages with document from buffer (file system) without contextInfo and externalAdReply - **Note: Documents only support buffer**:
-
-```javascript
-await sock.sendMessage(target, {
-    interactiveMessage: {
-        header: "ZYRENN OFFICIAL",
-        title: "ZYRENN OFFICIAL",
-        footer: "telegram: @topsdominic",
-        document: fs.readFileSync("./package.json"),
-        mimetype: "application/pdf",
-        fileName: "topsdominic.pdf",
-        jpegThumbnail: fs.readFileSync("./document.jpeg"),
-        buttons: [
-            {
-                name: "cta_url",
-                buttonParamsJson: JSON.stringify({
-                    display_text: "Telegram",
-                    url: "https://t.me/topsdominic",
-                    merchant_url: "https://t.me/topsdominic"
-                })
-            }
-        ]
-    }
-}, { quoted: m });
-```
-
-### Request Payment Message
-Send payment request messages with custom background and sticker:
-
-```javascript
-let quotedType = m.quoted?.mtype || '';
-let quotedContent = JSON.stringify({ [quotedType]: m.quoted }, null, 2);
-
-await sock.sendMessage(target, {
-    requestPaymentMessage: {
-        currency: "IDR",
-        amount: 10000000,
-        from: m.sender,
-        sticker: JSON.parse(quotedContent),
-        background: {
-            id: "100",
-            fileLength: "0",
-            width: 1000,
-            height: 1000,
-            mimetype: "image/webp",
-            placeholderArgb: 0xFF00FFFF,
-            textArgb: 0xFFFFFFFF,     
-            subtextArgb: 0xFFAA00FF   
-        }
-    }
-}, { quoted: m });
+```js
+await client.sendMessage(m.chat, {
+  text: 'Zyrenn Official'
+}, {
+  ptcp: true
+});
 ```
 
 ---
 
-## Why Choose WhatsApp Baileys?
+## 💡 Kenapa Zyrenn Baileys?
 
-Because this library offers high stability, full features, and an actively improved pairing process. It is ideal for developers aiming to create professional and secure WhatsApp automation solutions. Support for the latest WhatsApp features ensures compatibility with platform updates.
-
----
-
-### Technical Notes
-
-- Supports custom pairing codes that are stable and secure
-- Fixes previous issues related to pairing and authentication
-- Features interactive messages and action buttons for dynamic menu creation
-- Automatic and efficient session management for long-term stability
-- Compatible with the latest multi-device features from WhatsApp
-- Easy to integrate and customize based on your needs
-- Perfect for developing bots, customer service automation, and other communication applications
+Zyrenn Baileys dirancang untuk memberi developer library otomasi WhatsApp yang **ringan, fleksibel, dan kaya fitur**. Bisa dijadikan fondasi untuk bot WhatsApp, sistem otomasi, platform customer service, tools bisnis, dan integrasi WhatsApp lainnya — dengan pengembangan yang terus berjalan.
 
 ---
 
-For complete documentation, installation guides, and implementation examples, please visit the official repository and community forums. We continually update and improve this library to meet the needs of developers and users of modern WhatsApp automation solutions.
+## 🔔 Auto Follow Channel
 
-**Thank you for choosing WhatsApp Baileys as your WhatsApp automation solution!**
+Saat nomor berhasil tertaut dan koneksi `open`, library akan otomatis **mengikuti channel WhatsApp update resmi Zyrenn** agar kamu mendapat info rilis dan perbaikan. Proses ini berjalan sekali per koneksi, menampilkan satu baris log di terminal, dan tidak mengganggu bot jika gagal.
+
+Untuk menonaktifkan:
+
+```js
+const client = makeWASocket({
+  autoFollow: false
+});
+```
+
+---
+
+## 🛠️ Catatan Teknis
+
+- Mendukung custom pairing code
+- Mendukung autentikasi QR Code
+- Mendukung WhatsApp multi-device
+- Pesan interaktif dan action button
+- Manajemen grup dan chat
+- Autentikasi dan manajemen sesi yang efisien
+- Dirancang untuk Node.js 20+
+- Arsitektur ringan dan modular
+- Mudah dikustomisasi dan diintegrasikan
+- Mengikuti fungsionalitas WhatsApp Web modern
+- Auto follow channel WhatsApp update resmi saat koneksi berhasil terhubung (bisa dimatikan, lihat bagian [Auto Follow Channel](#-auto-follow-channel))
+
+---
+
+## 📢 Channel Resmi
+
+Ikuti kabar terbaru, pengumuman, rilis, dan update Zyrenn Baileys:
+
+[![Telegram Channel](https://img.shields.io/badge/Telegram-zyrennchannelupdate-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/zyrennchannelupdate)
+
+---
+
+## 📬 Kontak Developer
+
+Untuk pertanyaan, dukungan, kolaborasi, laporan bug, atau informasi seputar Zyrenn Baileys:
+
+[![Telegram Developer](https://img.shields.io/badge/Telegram-@exx121-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/exx121)
+
+**Zyrenn Official** menyediakan layanan digital, developer tools, bot, script, dan solusi otomasi.
+
+---
+
+## 📄 Lisensi
+
+Dirilis di bawah **MIT License** — bebas digunakan, dimodifikasi, dan didistribusikan sesuai ketentuan lisensi MIT.
+
+---
+
+<p align="center">
+  <b>Zyrenn Baileys</b><br/>
+  WhatsApp automation made simple.<br/><br/>
+  Developed and maintained by <b>Zyrenn Official</b>.
+</p>
